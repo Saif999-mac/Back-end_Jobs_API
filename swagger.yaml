@@ -1,0 +1,236 @@
+openapi: 3.0.3
+info:
+  title: JOBS_API
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: https://jobs-api-ml4q.onrender.com/api/v1
+paths:
+  /auth/register:
+    post:
+      summary: Register User
+      description: Register User
+      operationId: registerUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: peter
+            examples:
+              Register User:
+                value:
+                  name: peter
+      responses:
+        "200":
+          description: ""
+  /auth/login:
+    post:
+      summary: Login User
+      description: Login User
+      operationId: loginUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: saif@gmail.com
+                password:
+                  type: string
+                  example: secrets
+            examples:
+              Login User:
+                value:
+                  email: saif@gmail.com
+                  password: secrets
+      responses:
+        "200":
+          description: ""
+  /jobs:
+    get:
+      summary: Get All Jobs
+      description: Get All Jobs
+      operationId: getAllJobs
+      parameters:
+        - name: cache-control
+          in: header
+          schema:
+            type: string
+            example: no-cache
+        - name: postman-token
+          in: header
+          schema:
+            type: string
+            example: <calculated when request is sent>
+        - name: host
+          in: header
+          schema:
+            type: string
+            example: <calculated when request is sent>
+        - name: user-agent
+          in: header
+          schema:
+            type: string
+            example: PostmanRuntime/7.39.1
+        - name: accept-encoding
+          in: header
+          schema:
+            type: string
+            example: gzip, deflate, br
+        - name: connection
+          in: header
+          schema:
+            type: string
+            example: keep-alive
+        - name: ""
+          in: header
+          schema:
+            type: string
+            example: ""
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+    post:
+      summary: Create Job
+      description: Create Job
+      operationId: createJob
+      parameters:
+        - name: cache-control
+          in: header
+          schema:
+            type: string
+            example: no-cache
+        - name: postman-token
+          in: header
+          schema:
+            type: string
+            example: <calculated when request is sent>
+        - name: content-length
+          in: header
+          schema:
+            type: string
+            example: <calculated when request is sent>
+        - name: host
+          in: header
+          schema:
+            type: string
+            example: <calculated when request is sent>
+        - name: user-agent
+          in: header
+          schema:
+            type: string
+            example: PostmanRuntime/7.39.1
+        - name: accept-encoding
+          in: header
+          schema:
+            type: string
+            example: gzip, deflate, br
+        - name: connection
+          in: header
+          schema:
+            type: string
+            example: keep-alive
+        - name: ""
+          in: header
+          schema:
+            type: string
+            example: ""
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                company:
+                  type: string
+                  example: netflix
+                position:
+                  type: string
+                  example: backend-dev
+            examples:
+              Create Job:
+                value:
+                  company: netflix
+                  position: backend-dev
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+  /jobs/{id}:
+  get:
+    summary: Get Single Job
+    description: Get Single Job
+    operationId: getSingleJob
+
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+
+    responses:
+      "200":
+        description: Success
+
+    security:
+      - bearerAuth: []
+    get:
+      summary: Get Single Job
+      description: Get Single Job
+      operationId: getSingleJob
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+    delete:
+      summary: delete job
+      description: delete job
+      operationId: deleteJob
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+    patch:
+      summary: update Job
+      description: update Job
+      operationId: updateJob
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                company:
+                  type: string
+                  example: random
+                position:
+                  type: string
+                  example: Full-Stack-Dev
+            examples:
+              update Job:
+                value:
+                  company: random
+                  position: Full-Stack-Dev
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags: []
